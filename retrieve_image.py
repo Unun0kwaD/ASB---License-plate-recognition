@@ -39,6 +39,8 @@ draw.rectangle((0,0,LCD.LCDWIDTH,LCD.LCDHEIGHT), outline=255, fill=255)
 #camera_index is the video device number of the camera 
 camera_index = 0
 cam = cv2.VideoCapture(camera_index)
+ret = cam.set(cv2.CAP_PROP_FRAME_WIDTH,620)
+ret = cam.set(cv2.CAP_PROP_FRAME_HEIGHT,480)
 while True:
     ret, image =cam.read()
 
