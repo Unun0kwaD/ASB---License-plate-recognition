@@ -15,6 +15,9 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
 
+import requests
+import json
+
 from datetime import datetime, timedelta
 
 from gpiozero import DistanceSensor
@@ -45,6 +48,7 @@ draw.rectangle((0,0,LCD.LCDWIDTH,LCD.LCDHEIGHT), outline=255, fill=255)
 parser = argparse.ArgumentParser(description="License Plate Recognition")
 parser.add_argument('-T', '--test', action='store_true', help='Run in test mode with test images')
 parser.add_argument('-D', '--distance', action='store_true', help='Trigger camera only if something was detected in front of it')
+parser.add_argument('-L', '--local', action='store_true', help='Process images locally only')
 
 args = parser.parse_args()
 
@@ -215,8 +219,7 @@ def clear_display():
     disp.clear()   
     disp.display() 
              
-
-def process_image(image, image_name=None):
+def extract_plate(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)  # Convert to gray scale
     gray = cv2.bilateralFilter(gray, 13, 15, 15)
     edged = cv2.Canny(gray, 30, 200)  # Perform Edge detection
@@ -236,41 +239,71 @@ def process_image(image, image_name=None):
             (topx, topy) = (np.min(x), np.min(y))
             (bottomx, bottomy) = (np.max(x), np.max(y))
             Cropped = gray[topx:bottomx+1, topy:bottomy+1]
-            # image to text
+            return Cropped
+    
+    return None
+
+def process_image(image, image_name=None,local=False):
+
+    # image to text
+    text=""
+    Cropped = extract_plate(image)
+    if local:
+        if Cropped is not None:
             display_text(f"Processing\n\nimage")
             text = pytesseract.image_to_string(Cropped, config='--oem 3 --psm 6 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
             text = text.strip()
+    else:
+        
+        display_text(f"Sending\n\nimage")
+        success, image_jpg = cv2.imencode('.jpg', image)
+        try:
+            response = requests.post(
+                'https://api.platerecognizer.com/v1/plate-reader/',
+                data=dict(regions=['pl','ua','de'], config=json.dumps(dict(region="strict",mode="fast"))),
+                files=dict(upload=image_jpg.tostring()), 
+                headers={'Authorization': 'Token 9256a71f20eec8eafa039504889d94c07cd91a58'})
+            text=response.json()['results'][0]['plate'].upper()
+        except  (requests.RequestException, KeyError, IndexError) as e:
+            print(f"API error: {e}\nProcessing locally")
+            display_text(f"API error\nProcessing\nlocally")
+            if Cropped is not None:
+                text = pytesseract.image_to_string(Cropped, config='--oem 3 --psm 6 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+                text = text.strip()
+        
+    if len(text) > 5 and len(text) < 10:
+        print("Detected license plate number is:", text)
+        
+        if image_name is None:
+            image_name=str(int(time.time()))
+        
+        # Save the cropped image
+        
+        if Cropped is not None:
+            cropped_image_name = os.path.join(cropped_dir, f"cropped_{image_name}")
+            cv2.imwrite(cropped_image_name, Cropped)
+            # Check if remote database is available and save accordingly
+        else:
+            cropped_image_name="not cropped"
             
-            if len(text) > 5 and len(text) < 10:
-
-                # Save the cropped image
-                if image_name is not None:
-                    cropped_image_name = os.path.join(cropped_dir, f"cropped_{image_name}")
-                else:
-                    cropped_image_name = os.path.join(cropped_dir, f"cropped_{int(time.time())}.png")
-                cv2.imwrite(cropped_image_name, Cropped)
-                print("Detected license plate number is:", text)
-                
-                 # Check if remote database is available and save accordingly
-                if is_remote_database_available():
-                    save_to_remote_database(text, cropped_image_name)
-                save_to_local_database(text, cropped_image_name)
-                
-                # Check if the plate is allowed
-                if is_plate_allowed(text):
-                    display_text(f"Allowed:\n\n{text}")
-                    turn_on_green_led()
-                else:
-                    display_text(f"Not allowed:\n\n{text}")
-                    turn_on_red_led()
-            else:
-                turn_off_leds()
-                clear_display()
-            time.sleep(0.5)
-            turn_off_leds()
-            return text
+        if is_remote_database_available():
+            save_to_remote_database(text, cropped_image_name)
+        save_to_local_database(text, cropped_image_name)
+        
+        # Check if the plate is allowed
+        if is_plate_allowed(text):
+            display_text(f"Allowed:\n\n{text}")
+            turn_on_green_led()
+        else:
+            display_text(f"Not allowed:\n\n{text}")
+            turn_on_red_led()
+        time.sleep(1)
+    else:
+        turn_off_leds()
+        clear_display()
+    turn_off_leds()
     clear_display()
-    return ""
+    return text
 
 camera_index = 0
     
@@ -282,7 +315,7 @@ if args.test:
         image_path = os.path.join(test_folder, image_name)
         image = cv2.imread(image_path)
         image = cv2.resize(image, None,fx=0.5, fy=0.5, interpolation = cv2.INTER_CUBIC)
-        pred=process_image(image, image_name)
+        pred=process_image(image, image_name, local=args.local)
         if pred==image_name[:-4]:
             print("100%")
             count+=1.0
@@ -294,16 +327,17 @@ if args.test:
             count+=c
             print(f"{(c*100):.2f}%")
         
-    print(f"Accuracy: {count/len(os.listdir(test_folder)):.2f}")
+    print(f"Accuracy: {count*100/len(os.listdir(test_folder)):.2f}%")
             
 else:
     cam = cv2.VideoCapture(camera_index)
+    last_update = None
     while True:
         if (not args.dostance) or sensor.distance<0.75:
             ret, image = cam.read()
             if not ret:
                 break
-            process_image(image)
+            process_image(image, local=args.local)
         else:
             current_time = datetime.now()
             if last_update is None or current_time - last_update > timedelta(hours=1):
