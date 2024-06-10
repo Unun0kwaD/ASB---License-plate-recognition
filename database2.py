@@ -261,7 +261,7 @@ def process_image(image, image_name=None,local=False):
             response = requests.post(
                 'https://api.platerecognizer.com/v1/plate-reader/',
                 data=dict(regions=['pl','ua','de'], config=json.dumps(dict(region="strict",mode="fast"))),
-                files=dict(upload=image_jpg.tostring()), 
+                files=dict(upload=image_jpg.tobytes()), 
                 headers={'Authorization': 'Token 9256a71f20eec8eafa039504889d94c07cd91a58'})
             text=response.json()['results'][0]['plate'].upper()
         except  (requests.RequestException, KeyError, IndexError) as e:
@@ -280,12 +280,12 @@ def process_image(image, image_name=None,local=False):
         # Save the cropped image
         
         if Cropped is not None:
-            cropped_image_name = os.path.join(cropped_dir, f"cropped_{image_name}")
+            cropped_image_name = os.path.join(cropped_dir, f"cropped_{image_name}.jpg")
             cv2.imwrite(cropped_image_name, Cropped)
-            # Check if remote database is available and save accordingly
         else:
             cropped_image_name="not cropped"
-            
+        
+        # Check if remote database is available and save accordingly
         if is_remote_database_available():
             save_to_remote_database(text, cropped_image_name)
         save_to_local_database(text, cropped_image_name)
@@ -301,8 +301,6 @@ def process_image(image, image_name=None,local=False):
     else:
         turn_off_leds()
         clear_display()
-    turn_off_leds()
-    clear_display()
     return text
 
 camera_index = 0
@@ -333,7 +331,7 @@ else:
     cam = cv2.VideoCapture(camera_index)
     last_update = None
     while True:
-        if (not args.dostance) or sensor.distance<0.75:
+        if (not args.distance) or sensor.distance<0.75:
             ret, image = cam.read()
             if not ret:
                 break
