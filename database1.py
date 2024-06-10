@@ -5,6 +5,7 @@ import numpy as np
 import time
 import os
 import argparse
+import sqlite3
 import Adafruit_Nokia_LCD as LCD
 import Adafruit_GPIO.SPI as SPI
 from gpiozero import LED
@@ -41,18 +42,40 @@ draw.rectangle((0,0,LCD.LCDWIDTH,LCD.LCDHEIGHT), outline=255, fill=255)
 parser = argparse.ArgumentParser(description="License Plate Recognition")
 parser.add_argument('-T', '--test', action='store_true', help='Run in test mode with test images')
 parser.add_argument('-D', '--distance', action='store_true', help='Trigger camera only if something was detected in front of it')
+
 args = parser.parse_args()
 
 # Create directory for cropped images if it doesn't exist
 cropped_dir = 'cropped_images'
 if not os.path.exists(cropped_dir):
     os.makedirs(cropped_dir)
-image_name=None
 
-def process_image(image):
-    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) # Convert to gray scale
+# Initialize the database
+def initialize_database():
+    conn = sqlite3.connect('license_plates.db')
+    c = conn.cursor()
+    c.execute('''CREATE TABLE IF NOT EXISTS plates
+                 (id INTEGER PRIMARY KEY AUTOINCREMENT, 
+                  plate_number TEXT, 
+                  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, 
+                  image_path TEXT)''')
+    conn.commit()
+    conn.close()
+
+initialize_database()
+
+# Save data to the database
+def save_to_database(plate_number, image_path):
+    conn = sqlite3.connect('license_plates.db')
+    c = conn.cursor()
+    c.execute("INSERT INTO plates (plate_number, image_path) VALUES (?, ?)", (plate_number, image_path))
+    conn.commit()
+    conn.close()
+
+def process_image(image, image_name=None):
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)  # Convert to gray scale
     gray = cv2.bilateralFilter(gray, 13, 15, 15)
-    edged = cv2.Canny(gray, 30, 200) # Perform Edge detection
+    edged = cv2.Canny(gray, 30, 200)  # Perform Edge detection
 
     contours = cv2.findContours(edged.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     contours = imutils.grab_contours(contours)
@@ -81,7 +104,7 @@ def process_image(image):
                 draw.text((0, 0), text, font=font, fill=0)
                 disp.image(image_to_display)
                 disp.display()
-                
+           
                 # Save the cropped image
                 if image_name is not None:
                     cropped_image_name = os.path.join(cropped_dir, f"cropped_{image_name}")
@@ -100,7 +123,6 @@ def process_image(image):
             
     led_red.on()
     return False
-
 if args.test:
     test_folder = 'test_images'
     for image_name in os.listdir(test_folder):
@@ -108,12 +130,10 @@ if args.test:
         image_path = os.path.join(test_folder, image_name)
         image = cv2.imread(image_path)
         image = cv2.resize(image, (620, 480))
-        process_image(image)
-elif args.distance:
+        process_image(image, image_name)
+elif args.dostance:
     camera_index = 0
     cam = cv2.VideoCapture(camera_index)
-    # for i in range(0,18):
-    #     print(cam.get(i))
     while True:
         ret, image = cam.read()
         if not ret:

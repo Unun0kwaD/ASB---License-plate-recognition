@@ -1,0 +1,1074 @@
+[
+    {
+      "processing_time": 27.011,
+      "results": [
+        {
+          "box": {
+            "xmin": 451,
+            "ymin": 321,
+            "xmax": 653,
+            "ymax": 391
+          },
+          "plate": "po4s073",
+          "region": {
+            "code": "pl",
+            "score": 0.715
+          },
+          "score": 0.898,
+          "candidates": [
+            {
+              "score": 0.898,
+              "plate": "po4s073"
+            },
+            {
+              "score": 0.813,
+              "plate": "po4so73"
+            },
+            {
+              "score": 0.812,
+              "plate": "p04s073"
+            },
+            {
+              "score": 0.727,
+              "plate": "p04so73"
+            }
+          ],
+          "dscore": 0.86,
+          "vehicle": {
+            "score": 0.917,
+            "type": "Sedan",
+            "box": {
+              "xmin": 0,
+              "ymin": 0,
+              "xmax": 736,
+              "ymax": 507
+            }
+          }
+        }
+      ],
+      "filename": "0020_FJXSb_test01.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:20:24.752083Z"
+    },
+    {
+      "processing_time": 57.614,
+      "results": [
+        {
+          "box": {
+            "xmin": 589,
+            "ymin": 637,
+            "xmax": 790,
+            "ymax": 689
+          },
+          "plate": "po4kc19",
+          "region": {
+            "code": "pl",
+            "score": 0.691
+          },
+          "score": 0.893,
+          "candidates": [
+            {
+              "score": 0.893,
+              "plate": "po4kc19"
+            },
+            {
+              "score": 0.815,
+              "plate": "p04kc19"
+            },
+            {
+              "score": 0.806,
+              "plate": "po4kci9"
+            },
+            {
+              "score": 0.729,
+              "plate": "p04kci9"
+            }
+          ],
+          "dscore": 0.848,
+          "vehicle": {
+            "score": 0.012,
+            "type": "Van",
+            "box": {
+              "xmin": 546,
+              "ymin": 0,
+              "xmax": 1070,
+              "ymax": 737
+            }
+          }
+        }
+      ],
+      "filename": "0020_PIrf1_test02.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:20:25.810740Z"
+    },
+    {
+      "processing_time": 38.67,
+      "results": [
+        {
+          "box": {
+            "xmin": 497,
+            "ymin": 559,
+            "xmax": 684,
+            "ymax": 605
+          },
+          "plate": "py14291",
+          "region": {
+            "code": "pl",
+            "score": 0.488
+          },
+          "score": 0.9,
+          "candidates": [
+            {
+              "score": 0.9,
+              "plate": "py14291"
+            },
+            {
+              "score": 0.814,
+              "plate": "py1429i"
+            },
+            {
+              "score": 0.814,
+              "plate": "pyi4291"
+            },
+            {
+              "score": 0.727,
+              "plate": "pyi429i"
+            }
+          ],
+          "dscore": 0.864,
+          "vehicle": {
+            "score": 0.953,
+            "type": "Sedan",
+            "box": {
+              "xmin": 77,
+              "ymin": 173,
+              "xmax": 815,
+              "ymax": 728
+            }
+          }
+        }
+      ],
+      "filename": "0020_eW9wt_test03.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:20:26.895136Z"
+    },
+    {
+      "processing_time": 31.815,
+      "results": [
+        {
+          "box": {
+            "xmin": 422,
+            "ymin": 484,
+            "xmax": 599,
+            "ymax": 534
+          },
+          "plate": "pz757yc",
+          "region": {
+            "code": "pl",
+            "score": 0.376
+          },
+          "score": 0.901,
+          "candidates": [
+            {
+              "score": 0.901,
+              "plate": "pz757yc"
+            }
+          ],
+          "dscore": 0.85,
+          "vehicle": {
+            "score": 0.835,
+            "type": "SUV",
+            "box": {
+              "xmin": 0,
+              "ymin": 42,
+              "xmax": 735,
+              "ymax": 661
+            }
+          }
+        }
+      ],
+      "filename": "0020_X16tS_test04.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:20:28.021937Z"
+    },
+    {
+      "processing_time": 71.189,
+      "results": [
+        {
+          "box": {
+            "xmin": 63,
+            "ymin": 406,
+            "xmax": 261,
+            "ymax": 473
+          },
+          "plate": "po5lp32",
+          "region": {
+            "code": "pl",
+            "score": 0.762
+          },
+          "score": 0.894,
+          "candidates": [
+            {
+              "score": 0.894,
+              "plate": "po5lp32"
+            },
+            {
+              "score": 0.816,
+              "plate": "p05lp32"
+            }
+          ],
+          "dscore": 0.878,
+          "vehicle": {
+            "score": 0.0,
+            "type": "Unknown",
+            "box": {
+              "xmin": 0,
+              "ymin": 0,
+              "xmax": 0,
+              "ymax": 0
+            }
+          }
+        }
+      ],
+      "filename": "0020_I0ZB8_test05.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:20:30.912308Z"
+    },
+    {
+      "processing_time": 42.914,
+      "results": [
+        {
+          "box": {
+            "xmin": 290,
+            "ymin": 277,
+            "xmax": 456,
+            "ymax": 333
+          },
+          "plate": "po2tc75",
+          "region": {
+            "code": "pl",
+            "score": 0.526
+          },
+          "score": 0.874,
+          "candidates": [
+            {
+              "score": 0.874,
+              "plate": "po2tc75"
+            },
+            {
+              "score": 0.835,
+              "plate": "p02tc75"
+            }
+          ],
+          "dscore": 0.862,
+          "vehicle": {
+            "score": 0.0,
+            "type": "Unknown",
+            "box": {
+              "xmin": 0,
+              "ymin": 0,
+              "xmax": 0,
+              "ymax": 0
+            }
+          }
+        }
+      ],
+      "filename": "0020_DAKEY_test06.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:20:33.524991Z"
+    },
+    {
+      "processing_time": 26.979,
+      "results": [
+        {
+          "box": {
+            "xmin": 343,
+            "ymin": 517,
+            "xmax": 545,
+            "ymax": 577
+          },
+          "plate": "py91813",
+          "region": {
+            "code": "pl",
+            "score": 0.457
+          },
+          "score": 0.9,
+          "candidates": [
+            {
+              "score": 0.9,
+              "plate": "py91813"
+            },
+            {
+              "score": 0.814,
+              "plate": "py918i3"
+            },
+            {
+              "score": 0.814,
+              "plate": "py91b13"
+            },
+            {
+              "score": 0.814,
+              "plate": "py9i813"
+            },
+            {
+              "score": 0.727,
+              "plate": "py91bi3"
+            },
+            {
+              "score": 0.727,
+              "plate": "py9i8i3"
+            },
+            {
+              "score": 0.727,
+              "plate": "py9ib13"
+            },
+            {
+              "score": 0.641,
+              "plate": "py9ibi3"
+            }
+          ],
+          "dscore": 0.876,
+          "vehicle": {
+            "score": 0.94,
+            "type": "Van",
+            "box": {
+              "xmin": 77,
+              "ymin": 0,
+              "xmax": 908,
+              "ymax": 751
+            }
+          }
+        }
+      ],
+      "filename": "0021_wXEHY_test07.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:21:22.311223Z"
+    },
+    {
+      "processing_time": 30.33,
+      "results": [
+        {
+          "box": {
+            "xmin": 226,
+            "ymin": 548,
+            "xmax": 595,
+            "ymax": 642
+          },
+          "plate": "pz5r058",
+          "region": {
+            "code": "pl",
+            "score": 0.62
+          },
+          "score": 0.9,
+          "candidates": [
+            {
+              "score": 0.9,
+              "plate": "pz5r058"
+            },
+            {
+              "score": 0.814,
+              "plate": "pz5ro58"
+            },
+            {
+              "score": 0.813,
+              "plate": "pz5r05b"
+            },
+            {
+              "score": 0.727,
+              "plate": "pz5ro5b"
+            }
+          ],
+          "dscore": 0.865,
+          "vehicle": {
+            "score": 0.893,
+            "type": "Sedan",
+            "box": {
+              "xmin": 0,
+              "ymin": 0,
+              "xmax": 1183,
+              "ymax": 1095
+            }
+          }
+        }
+      ],
+      "filename": "0021_jU9sr_test08.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:21:23.353304Z"
+    },
+    {
+      "processing_time": 29.276,
+      "results": [
+        {
+          "box": {
+            "xmin": 106,
+            "ymin": 439,
+            "xmax": 271,
+            "ymax": 522
+          },
+          "plate": "gczut12",
+          "region": {
+            "code": "pl",
+            "score": 0.518
+          },
+          "score": 0.9,
+          "candidates": [
+            {
+              "score": 0.9,
+              "plate": "gczut12"
+            },
+            {
+              "score": 0.814,
+              "plate": "gczuti2"
+            }
+          ],
+          "dscore": 0.845,
+          "vehicle": {
+            "score": 0.956,
+            "type": "Van",
+            "box": {
+              "xmin": 34,
+              "ymin": 0,
+              "xmax": 810,
+              "ymax": 772
+            }
+          }
+        }
+      ],
+      "filename": "0021_19NOA_test09.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:21:26.172418Z"
+    },
+    {
+      "processing_time": 46.026,
+      "results": [
+        {
+          "box": {
+            "xmin": 657,
+            "ymin": 1005,
+            "xmax": 1271,
+            "ymax": 1160
+          },
+          "plate": "po1px29",
+          "region": {
+            "code": "pl",
+            "score": 0.63
+          },
+          "score": 0.897,
+          "candidates": [
+            {
+              "score": 0.897,
+              "plate": "po1px29"
+            },
+            {
+              "score": 0.814,
+              "plate": "p01px29"
+            },
+            {
+              "score": 0.81,
+              "plate": "poipx29"
+            },
+            {
+              "score": 0.727,
+              "plate": "p0ipx29"
+            }
+          ],
+          "dscore": 0.843,
+          "vehicle": {
+            "score": 0.792,
+            "type": "Sedan",
+            "box": {
+              "xmin": 228,
+              "ymin": 250,
+              "xmax": 1550,
+              "ymax": 1692
+            }
+          }
+        }
+      ],
+      "filename": "0021_4NrbM_test10.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:21:27.357609Z"
+    },
+    {
+      "processing_time": 35.727,
+      "results": [
+        {
+          "box": {
+            "xmin": 213,
+            "ymin": 1091,
+            "xmax": 652,
+            "ymax": 1240
+          },
+          "plate": "po2wt61",
+          "region": {
+            "code": "pl",
+            "score": 0.691
+          },
+          "score": 0.896,
+          "candidates": [
+            {
+              "score": 0.896,
+              "plate": "po2wt61"
+            },
+            {
+              "score": 0.814,
+              "plate": "p02wt61"
+            },
+            {
+              "score": 0.81,
+              "plate": "po2wt6i"
+            },
+            {
+              "score": 0.727,
+              "plate": "p02wt6i"
+            }
+          ],
+          "dscore": 0.822,
+          "vehicle": {
+            "score": 0.906,
+            "type": "Sedan",
+            "box": {
+              "xmin": 0,
+              "ymin": 0,
+              "xmax": 1223,
+              "ymax": 1527
+            }
+          }
+        }
+      ],
+      "filename": "0021_iHT9e_test11.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:21:28.430254Z"
+    },
+    {
+      "processing_time": 54.48,
+      "results": [
+        {
+          "box": {
+            "xmin": 82,
+            "ymin": 686,
+            "xmax": 310,
+            "ymax": 763
+          },
+          "plate": "pgsyt99",
+          "region": {
+            "code": "pl",
+            "score": 0.595
+          },
+          "score": 0.9,
+          "candidates": [
+            {
+              "score": 0.9,
+              "plate": "pgsyt99"
+            }
+          ],
+          "dscore": 0.848,
+          "vehicle": {
+            "score": 0.915,
+            "type": "Sedan",
+            "box": {
+              "xmin": 0,
+              "ymin": 175,
+              "xmax": 908,
+              "ymax": 1231
+            }
+          }
+        }
+      ],
+      "filename": "0021_FhVPS_test12.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:21:29.493911Z"
+    },
+    {
+      "processing_time": 64.708,
+      "results": [
+        {
+          "box": {
+            "xmin": 583,
+            "ymin": 789,
+            "xmax": 1034,
+            "ymax": 899
+          },
+          "plate": "po3l055",
+          "region": {
+            "code": "pl",
+            "score": 0.645
+          },
+          "score": 0.897,
+          "candidates": [
+            {
+              "score": 0.897,
+              "plate": "po3l055"
+            },
+            {
+              "score": 0.814,
+              "plate": "p03l055"
+            },
+            {
+              "score": 0.81,
+              "plate": "po3lo55"
+            },
+            {
+              "score": 0.727,
+              "plate": "p03lo55"
+            }
+          ],
+          "dscore": 0.875,
+          "vehicle": {
+            "score": 0.815,
+            "type": "Sedan",
+            "box": {
+              "xmin": 138,
+              "ymin": 272,
+              "xmax": 1559,
+              "ymax": 1458
+            }
+          }
+        }
+      ],
+      "filename": "0021_gqiR5_test13.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:21:30.640140Z"
+    },
+    {
+      "processing_time": 52.883,
+      "results": [
+        {
+          "box": {
+            "xmin": 780,
+            "ymin": 1326,
+            "xmax": 1311,
+            "ymax": 1466
+          },
+          "plate": "wk82830",
+          "region": {
+            "code": "pl",
+            "score": 0.519
+          },
+          "score": 0.9,
+          "candidates": [
+            {
+              "score": 0.9,
+              "plate": "wk82830"
+            },
+            {
+              "score": 0.814,
+              "plate": "wk8283o"
+            },
+            {
+              "score": 0.814,
+              "plate": "wk82b30"
+            },
+            {
+              "score": 0.814,
+              "plate": "wkb2830"
+            },
+            {
+              "score": 0.727,
+              "plate": "wk82b3o"
+            },
+            {
+              "score": 0.727,
+              "plate": "wkb283o"
+            },
+            {
+              "score": 0.727,
+              "plate": "wkb2b30"
+            },
+            {
+              "score": 0.64,
+              "plate": "wkb2b3o"
+            }
+          ],
+          "dscore": 0.85,
+          "vehicle": {
+            "score": 0.833,
+            "type": "Van",
+            "box": {
+              "xmin": 149,
+              "ymin": 164,
+              "xmax": 1849,
+              "ymax": 1779
+            }
+          }
+        }
+      ],
+      "filename": "0021_qeMgS_test14.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:21:31.952027Z"
+    },
+    {
+      "processing_time": 51.768,
+      "results": [
+        {
+          "box": {
+            "xmin": 516,
+            "ymin": 1016,
+            "xmax": 1065,
+            "ymax": 1146
+          },
+          "plate": "bi9402ck",
+          "region": {
+            "code": "ua",
+            "score": 0.246
+          },
+          "score": 0.9,
+          "candidates": [
+            {
+              "score": 0.9,
+              "plate": "bi9402ck"
+            },
+            {
+              "score": 0.825,
+              "plate": "bi94o2ck"
+            },
+            {
+              "score": 0.825,
+              "plate": "b19402ck"
+            },
+            {
+              "score": 0.825,
+              "plate": "8i9402ck"
+            },
+            {
+              "score": 0.749,
+              "plate": "b194o2ck"
+            },
+            {
+              "score": 0.749,
+              "plate": "8i94o2ck"
+            },
+            {
+              "score": 0.749,
+              "plate": "819402ck"
+            },
+            {
+              "score": 0.673,
+              "plate": "8194o2ck"
+            }
+          ],
+          "dscore": 0.875,
+          "vehicle": {
+            "score": 0.916,
+            "type": "Van",
+            "box": {
+              "xmin": 7,
+              "ymin": 3,
+              "xmax": 1696,
+              "ymax": 1699
+            }
+          }
+        }
+      ],
+      "filename": "0021_Gb0qZ_test15.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:21:33.143684Z"
+    },
+    {
+      "processing_time": 31.26,
+      "results": [
+        {
+          "box": {
+            "xmin": 413,
+            "ymin": 586,
+            "xmax": 876,
+            "ymax": 697
+          },
+          "plate": "po8pj33",
+          "region": {
+            "code": "pl",
+            "score": 0.554
+          },
+          "score": 0.899,
+          "candidates": [
+            {
+              "score": 0.899,
+              "plate": "po8pj33"
+            },
+            {
+              "score": 0.814,
+              "plate": "p08pj33"
+            },
+            {
+              "score": 0.812,
+              "plate": "pobpj33"
+            },
+            {
+              "score": 0.727,
+              "plate": "p0bpj33"
+            }
+          ],
+          "dscore": 0.87,
+          "vehicle": {
+            "score": 0.915,
+            "type": "Sedan",
+            "box": {
+              "xmin": 4,
+              "ymin": 63,
+              "xmax": 1322,
+              "ymax": 1310
+            }
+          }
+        }
+      ],
+      "filename": "0021_DCAF6_test16.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:21:34.289541Z"
+    },
+    {
+      "processing_time": 60.576,
+      "results": [
+        {
+          "box": {
+            "xmin": 409,
+            "ymin": 782,
+            "xmax": 1030,
+            "ymax": 942
+          },
+          "plate": "pwa14084",
+          "region": {
+            "code": "pl",
+            "score": 0.744
+          },
+          "score": 0.9,
+          "candidates": [
+            {
+              "score": 0.9,
+              "plate": "pwa14084"
+            },
+            {
+              "score": 0.825,
+              "plate": "pwa140b4"
+            },
+            {
+              "score": 0.824,
+              "plate": "pwa14o84"
+            },
+            {
+              "score": 0.824,
+              "plate": "pwai4084"
+            },
+            {
+              "score": 0.749,
+              "plate": "pwa14ob4"
+            },
+            {
+              "score": 0.749,
+              "plate": "pwai40b4"
+            },
+            {
+              "score": 0.749,
+              "plate": "pwai4o84"
+            },
+            {
+              "score": 0.673,
+              "plate": "pwai4ob4"
+            }
+          ],
+          "dscore": 0.859,
+          "vehicle": {
+            "score": 0.84,
+            "type": "SUV",
+            "box": {
+              "xmin": 0,
+              "ymin": 10,
+              "xmax": 1592,
+              "ymax": 1593
+            }
+          }
+        }
+      ],
+      "filename": "0021_T4Y50_test17.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:21:35.345647Z"
+    },
+    {
+      "processing_time": 83.519,
+      "results": [
+        {
+          "box": {
+            "xmin": 620,
+            "ymin": 1076,
+            "xmax": 1131,
+            "ymax": 1207
+          },
+          "plate": "po6ga89",
+          "region": {
+            "code": "pl",
+            "score": 0.676
+          },
+          "score": 0.9,
+          "candidates": [
+            {
+              "score": 0.9,
+              "plate": "po6ga89"
+            },
+            {
+              "score": 0.814,
+              "plate": "p06ga89"
+            },
+            {
+              "score": 0.813,
+              "plate": "po6gab9"
+            },
+            {
+              "score": 0.727,
+              "plate": "p06gab9"
+            }
+          ],
+          "dscore": 0.881,
+          "vehicle": {
+            "score": 0.927,
+            "type": "Sedan",
+            "box": {
+              "xmin": 4,
+              "ymin": 17,
+              "xmax": 1604,
+              "ymax": 1392
+            }
+          }
+        }
+      ],
+      "filename": "0021_znVKT_test18.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:21:36.425462Z"
+    },
+    {
+      "processing_time": 102.084,
+      "results": [
+        {
+          "box": {
+            "xmin": 639,
+            "ymin": 1047,
+            "xmax": 1301,
+            "ymax": 1223
+          },
+          "plate": "po785wr",
+          "region": {
+            "code": "pl",
+            "score": 0.676
+          },
+          "score": 0.899,
+          "candidates": [
+            {
+              "score": 0.899,
+              "plate": "po785wr"
+            },
+            {
+              "score": 0.814,
+              "plate": "p0785wr"
+            },
+            {
+              "score": 0.812,
+              "plate": "po7b5wr"
+            },
+            {
+              "score": 0.727,
+              "plate": "p07b5wr"
+            }
+          ],
+          "dscore": 0.877,
+          "vehicle": {
+            "score": 0.945,
+            "type": "Van",
+            "box": {
+              "xmin": 3,
+              "ymin": 2,
+              "xmax": 2006,
+              "ymax": 2009
+            }
+          }
+        }
+      ],
+      "filename": "0021_8yWSy_test19.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:21:37.646308Z"
+    },
+    {
+      "processing_time": 52.068,
+      "results": [
+        {
+          "box": {
+            "xmin": 616,
+            "ymin": 1353,
+            "xmax": 2044,
+            "ymax": 1786
+          },
+          "plate": "ple12311",
+          "region": {
+            "code": "pl",
+            "score": 0.617
+          },
+          "score": 0.9,
+          "candidates": [
+            {
+              "score": 0.9,
+              "plate": "ple12311"
+            },
+            {
+              "score": 0.825,
+              "plate": "ple1231i"
+            },
+            {
+              "score": 0.825,
+              "plate": "ple123i1"
+            },
+            {
+              "score": 0.824,
+              "plate": "plei2311"
+            },
+            {
+              "score": 0.749,
+              "plate": "ple123ii"
+            },
+            {
+              "score": 0.749,
+              "plate": "plei231i"
+            },
+            {
+              "score": 0.749,
+              "plate": "plei23i1"
+            },
+            {
+              "score": 0.673,
+              "plate": "plei23ii"
+            }
+          ],
+          "dscore": 0.783,
+          "vehicle": {
+            "score": 0.874,
+            "type": "Sedan",
+            "box": {
+              "xmin": 1,
+              "ymin": 0,
+              "xmax": 2802,
+              "ymax": 2226
+            }
+          }
+        }
+      ],
+      "filename": "0021_Sri5I_test20.jpg",
+      "version": 1,
+      "camera_id": null,
+      "timestamp": "2024-06-10T00:21:39.012351Z"
+    }
+  ]
