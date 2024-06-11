@@ -51,8 +51,14 @@ image_name=None
 
 def process_image(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) # Convert to gray scale
+    cropped_image_name = os.path.join(cropped_dir, f"gray0_{image_name}")
+    cv2.imwrite(cropped_image_name, gray)
     gray = cv2.bilateralFilter(gray, 13, 15, 15)
+    cropped_image_name = os.path.join(cropped_dir, f"gray1_{image_name}")
+    cv2.imwrite(cropped_image_name, gray)
     edged = cv2.Canny(gray, 30, 200) # Perform Edge detection
+    cropped_image_name = os.path.join(cropped_dir, f"test0_{image_name}")
+    cv2.imwrite(cropped_image_name, edged)
 
     contours = cv2.findContours(edged.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     contours = imutils.grab_contours(contours)
@@ -68,7 +74,12 @@ def process_image(image):
             found = True
             mask = np.zeros(gray.shape, np.uint8)
             new_image = cv2.drawContours(mask, [screenCnt], 0, 255, -1)
+            cropped_image_name = os.path.join(cropped_dir, f"test1_{image_name}")
+            cv2.imwrite(cropped_image_name, new_image)
+            
             new_image = cv2.bitwise_and(image, image, mask=mask)
+            cropped_image_name = os.path.join(cropped_dir, f"test2_{image_name}")
+            cv2.imwrite(cropped_image_name, new_image)
             (x, y) = np.where(mask == 255)
             (topx, topy) = (np.min(x), np.min(y))
             (bottomx, bottomy) = (np.max(x), np.max(y))

@@ -80,7 +80,7 @@ def initialize_local_database():
                   timestamp DATETIME DEFAULT CURRENT_TIMESTAMP, 
                   image_path TEXT)''')
     c.execute('''CREATE TABLE IF NOT EXISTS allowed_plates
-                   (id SERIAL PRIMARY KEY, 
+                   (id INTEGER PRIMARY KEY AUTOINCREMENT, 
                     plate_number TEXT UNIQUE)''')
     conn.commit()
     conn.close()
@@ -193,17 +193,28 @@ def update_local_database_with_allowed_plates():
     conn.close()
     
     # Update remote database with plates from local database
-def update_remote_database_with_local_plates():
+def update_remote_database_with_local_plates(last_update):
     conn_local = sqlite3.connect('license_plates.db')
     c_local = conn_local.cursor()
-    c_local.execute("SELECT plate_number,timestamp, image_path FROM plates")
+    
+    # Convert last_update to a string if it's not None
+    last_update_str = last_update.strftime('%Y-%m-%d %H:%M:%S') if last_update else '1970-01-01 00:00:00'
+    
+    # Fetch plates with timestamp after the last update
+    c_local.execute("SELECT plate_number, timestamp, image_path FROM plates WHERE timestamp > ?", (last_update_str,))
     local_plates = c_local.fetchall()
     conn_local.close()
 
     conn_remote = get_postgres_connection()
     cur_remote = conn_remote.cursor()
     for plate in local_plates:
-        cur_remote.execute("INSERT INTO plates (plate_number,timestamp, image_path) VALUES (%s,%s, %s) ON CONFLICT DO NOTHING", plate)
+        plate_number, timestamp, image_path = plate
+        # Convert timestamp string to datetime object
+        timestamp = datetime.strptime(timestamp, '%Y-%m-%d %H:%M:%S')
+        cur_remote.execute(
+            "INSERT INTO plates (plate_number, timestamp, image_path) VALUES (%s, %s, %s) ON CONFLICT DO NOTHING",
+            (plate_number, timestamp, image_path)
+        )
     conn_remote.commit()
     cur_remote.close()
     conn_remote.close()
@@ -234,7 +245,7 @@ def extract_plate(image):
         if len(approx) == 4:
             mask = np.zeros(gray.shape, np.uint8)
             new_image = cv2.drawContours(mask, [approx], 0, 255, -1)
-            new_image = cv2.bitwise_and(image, image, mask=mask)
+            new_image = cv2.bitwise_and(gray, gray, mask=mask)
             (x, y) = np.where(mask == 255)
             (topx, topy) = (np.min(x), np.min(y))
             (bottomx, bottomy) = (np.max(x), np.max(y))
@@ -245,13 +256,15 @@ def extract_plate(image):
 
 def process_image(image, image_name=None,local=False):
 
+    wait=0
     # image to text
     text=""
     Cropped = extract_plate(image)
     if local:
         if Cropped is not None:
             display_text(f"Processing\n\nimage")
-            text = pytesseract.image_to_string(Cropped, config='--oem 3 --psm 6 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+            text = pytesseract.image_to_string(Cropped, 
+                config='--oem 3 --psm 6 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
             text = text.strip()
     else:
         
@@ -264,6 +277,7 @@ def process_image(image, image_name=None,local=False):
                 files=dict(upload=image_jpg.tobytes()), 
                 headers={'Authorization': 'Token 9256a71f20eec8eafa039504889d94c07cd91a58'})
             text=response.json()['results'][0]['plate'].upper()
+            wait=1
         except  (requests.RequestException, KeyError, IndexError) as e:
             print(f"API error: {e}\nProcessing locally")
             display_text(f"API error\nProcessing\nlocally")
@@ -299,6 +313,7 @@ def process_image(image, image_name=None,local=False):
             turn_on_red_led()
         time.sleep(1)
     else:
+        time.sleep(wait)
         turn_off_leds()
         clear_display()
     return text
@@ -331,7 +346,8 @@ else:
     cam = cv2.VideoCapture(camera_index)
     last_update = None
     while True:
-        if (not args.distance) or sensor.distance<0.75:
+        print(args.distance,sensor.distance)
+        if (not args.distance) or sensor.distance<1.0:
             ret, image = cam.read()
             if not ret:
                 break
@@ -340,8 +356,10 @@ else:
             current_time = datetime.now()
             if last_update is None or current_time - last_update > timedelta(hours=1):
                 if is_remote_database_available():
+                    print("Databases\nsync")
+                    display_text("Databases\nsync")
                     update_local_database_with_allowed_plates()
-                    update_remote_database_with_local_plates()
+                    update_remote_database_with_local_plates(last_update)
                     last_update = current_time
             time.sleep(1)
     cam.release()
