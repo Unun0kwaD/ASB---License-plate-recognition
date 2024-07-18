@@ -346,7 +346,7 @@ else:
     cam = cv2.VideoCapture(camera_index)
     last_update = None
     while True:
-        print(args.distance,sensor.distance)
+        # print(args.distance,sensor.distance)
         if (not args.distance) or sensor.distance<1.0:
             ret, image = cam.read()
             if not ret:
